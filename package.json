@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "package.json": "^2.0.1"
+  },
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "Task for RS School",
+  "main": "index.mjs",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node src/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayarez/File_manager.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "kayarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayarez/File_manager/issues"
+  },
+  "homepage": "https://github.com/kayarez/File_manager#readme"
+}
