@@ -3,6 +3,7 @@ import * as stream from 'node:stream';
 import * as fs from 'node:fs';
 import * as util from 'node:util';
 import * as path from 'node:path';
+import { access } from 'node:fs/promises';
 
 export const decompress = async (filename, filetoDecompress) => {
 
@@ -12,14 +13,17 @@ export const decompress = async (filename, filetoDecompress) => {
         var destPath = global.home;
         curPath = path.join(curPath, filename);
         destPath = path.join(destPath, filetoDecompress)
-        console.log(curPath);
+
+
 
         const pipe = util.promisify(stream.pipeline);
         const bzip = zlib.createBrotliDecompress();
         const source = fs.createReadStream(curPath);
         const destination = fs.createWriteStream(destPath);
         await pipe(source, bzip, destination);
-        console.log("Decompress cuccessful")
+
+
+        console.log('You are currently in ' + global.home);
         
     } catch (error) {
 
@@ -29,4 +33,17 @@ export const decompress = async (filename, filetoDecompress) => {
 
 };
 
+
+const exists = async(path) =>{
+    
+    try {
+
+        await access(path);
+        return true;
+        
+    } catch  {
+        return false;
+    }
+    
+};
 

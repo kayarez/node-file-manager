@@ -1,5 +1,5 @@
 import * as path from "path"
-import * as fs from "fs/promises"
+import { access } from "fs/promises";
 
 const upOp = async() => {
     var curPath = path.dirname(global.home);
@@ -10,23 +10,25 @@ const upOp = async() => {
             global.home = curPath;
             console.log('You are currently in ' + global.home);
             return curPath;
+            
         }
         else{
-            throw new Error("Operation failed");
-        }        
+            throw new Error("Operation failed"); 
+        }   
+             
     }
     
     catch(error){
         console.error(error.message);
     } 
 
-}
+};
 
 const exists = async(path) =>{
     
     try {
 
-        await fs.access(path);
+        await access(path);
         return true;
         
     } catch  {
@@ -34,5 +36,6 @@ const exists = async(path) =>{
     }
     
 };
+
 
 export {upOp};
