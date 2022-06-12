@@ -1,15 +1,14 @@
 import * as path from "path"
-import { access } from "fs/promises";
+import * as fs from "fs/promises"
 
 const cdOp = async(oldPath, newPath) => {
     var curPath = path.join(oldPath, newPath);
 
     try{
-
-        if( await exists(curPath))
+        if(await exists(curPath))
            {
             global.home = curPath;
-            console.log('You are currently in ' + global.home);
+            console.log('You are currently in ' + curPath);
             return curPath;
         }
         else{
@@ -21,13 +20,13 @@ const cdOp = async(oldPath, newPath) => {
         console.error(error.message);
     } 
 
-};
+}
 
 const exists = async(path) =>{
     
     try {
 
-        await access(path);
+        await fs.access(path);
         return true;
         
     } catch  {
@@ -35,6 +34,5 @@ const exists = async(path) =>{
     }
     
 };
-
 
 export {cdOp};
